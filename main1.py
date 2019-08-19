@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # filename: main.py
 import web
+import traceback
 
 urls = (
     '/wx', 'Handle',
@@ -23,16 +24,16 @@ class Handle(object):
             sha1 = hashlib.sha1()
             map(sha1.update, list)
             hashcode = sha1.hexdigest()
-            print
-            "handle/GET func: hashcode, signature: ", hashcode, signature
+            print("handle/GET func: hashcode, signature: ", hashcode, signature)
             if hashcode == signature:
                 return echostr
             else:
                 return ""
-        except Exception, Argument:
+        except Exception as Argument:
+            traceback.print_exc()
             return Argument
 
 
 if __name__ == '__main__':
-    app = web.application(urls, port=80, globals())
+    app = web.application(urls, globals())
     app.run()
