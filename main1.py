@@ -19,7 +19,7 @@ class Handle(object):
             timestamp = data.timestamp
             nonce = data.nonce
             echostr = data.echostr
-            token = 1234
+            token = '1234'
             list = [token, timestamp, nonce]
             list.sort()
             sha1 = hashlib.sha1()
