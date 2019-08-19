@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+# filename: handle.py
 
 import hashlib
 import web
-
 
 class Handle(object):
     def GET(self):
@@ -14,24 +14,19 @@ class Handle(object):
             timestamp = data.timestamp
             nonce = data.nonce
             echostr = data.echostr
-            token = "1234"
+            token = "xxxx" #请按照公众平台官网\基本配置中信息填写
+
             list = [token, timestamp, nonce]
             list.sort()
             sha1 = hashlib.sha1()
-            map(sha1.update, list)
+            sha1.update(list[0].encode("utf-8"))
+            sha1.update(list[1].encode("utf-8"))
+            sha1.update(list[2].encode("utf-8"))
             hashcode = sha1.hexdigest()
-            print
-            "handle/GET func: hashcode, signature: ", hashcode, signature
+            print "handle/GET func: hashcode, signature: ", hashcode, signature
             if hashcode == signature:
                 return echostr
             else:
                 return ""
         except Exception, Argument:
             return Argument
-
-
----------------------
-版权声明：本文为CSDN博主「Block - Man」的原创文章，遵循CC
-4.0
-by - sa版权协议，转载请附上原文出处链接及本声明。
-原文链接：https: // blog.csdn.net / qq_34192983 / article / details / 77050932
