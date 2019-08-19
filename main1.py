@@ -2,6 +2,7 @@
 # filename: main.py
 import web
 import traceback
+import hashlib
 
 urls = (
     '/wx', 'Handle',
